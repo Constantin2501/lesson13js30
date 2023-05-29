@@ -3,17 +3,8 @@ const headerInput = document.querySelector('.header-input')
 const todoList = document.querySelector('.todo-list')
 const todoCompleted = document.querySelector('.todo-completed')
 
-const toDoData = []
-const storageDataJson = localStorage.getItem('storageList')
-const storageData = JSON.parse(storageDataJson)
+const toDoData = localStorage.getItem('storageList') ? JSON.parse(localStorage.getItem('storageList')) : []
 
-
-const storageRender = function () {
-    storageData.forEach(function(item) {
-        toDoData.push(item)
-        render()
-    })
-}
 
 const render = function () {
     todoList.innerHTML = ''
@@ -75,5 +66,3 @@ todoControl.addEventListener('submit', function(event) {
 
     localStorage.setItem('storageList', JSON.stringify(toDoData))
 })
-
-storageRender()
